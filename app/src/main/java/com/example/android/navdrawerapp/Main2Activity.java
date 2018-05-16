@@ -47,8 +47,8 @@ public class Main2Activity extends AppCompatActivity {
     public static final int RC_SIGN_IN = 1;
     public static final int RC_PHOTO_PICKER = 2;
     private static final String TAG = "MainActivity";
-    //private static final int CAMERA_REQUEST = 1;
-    // Button signInButton, takePictureButton;
+    private static final int CAMERA_REQUEST = 1;
+    Button signInButton, takePictureButton;
     private ListView mMessageListView;
     private MessageAdapter mMessageAdapter;
     private ProgressBar mProgressBar;
@@ -102,8 +102,12 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Fire an intent to show an image picker
-            }
-        });
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/jpeg");
+                        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                        startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
+                    }
+                });
 
         // Enable Send button when there's text to send
         mMessageEditText.addTextChangedListener(new TextWatcher() {
@@ -171,33 +175,23 @@ public class Main2Activity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
-            if (requestCode == RESULT_OK) {
-                Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "Signed In!", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED){
                 Toast.makeText(this, "Sign in cancelled", Toast.LENGTH_SHORT).show();
                 finish();
-            } else if (requestCode == RC_PHOTO_PICKER && requestCode == RESULT_OK) {
+            } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK){
                 Uri selectedImageUri = data.getData();
-
-                //get a reference to store file
                 StorageReference photoRef = mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
 
-                //upload file to firebase storage
                 photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
+                    //@Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        FriendlyMessage friendlyMessage = new FriendlyMessage(null, mUsername, downloadUrl.toString());
+                        FriendlyMessage friendlyMessage = new FriendlyMessage(null, mUsername,downloadUrl.toString());
                         mMessagesDatabaseReference.push().setValue(friendlyMessage);
                     }
                 });
-                //takePictureButton = (Button) findViewById(R.id.photoPickerButton);
-                //takePictureButton.setOnClickListener(new View.OnClickListener() {
-                // @Override
-                //public void onClick(View v) {
-                //photoPickerButton();
-                // }
-                //});
             }
         }
     }

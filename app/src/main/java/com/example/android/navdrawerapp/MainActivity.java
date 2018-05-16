@@ -13,7 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +56,35 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+    //TextView mWeatherTextView = findViewById(R.id.tv_weather_data);
+    ArrayList<String> dummyWeatherData = new ArrayList<>();
+
+        dummyWeatherData.add("ICI-Timetable");
+        dummyWeatherData.add("Memo");
+        dummyWeatherData.add("Today, May 17 - Clear - 17°C / 15°C");
+        dummyWeatherData.add("Today, May 17 - Clear - 17°C / 15°C");
+        dummyWeatherData.add("Today, May 17 - Clear - 17°C / 15°C");
+
+    ArrayAdapter dummyWeatherDataAdapter = new ArrayAdapter (this , android.R.layout.simple_list_item_1, dummyWeatherData);
+
+    ListView listView = (ListView) findViewById(R.id.list);
+
+    listView.setAdapter(dummyWeatherDataAdapter);
+
+    //String[] dummyWeatherData = {
+            //"Today, May 17 - Clear - 17°C / 15°C",
+            //"Tomorrow - Cloudy - 19°C / 15°C",
+            //"Thursday - Rainy- 30°C / 11°C",
+            //"Friday - Thunderstorms - 21°C / 9°C",
+            //"Saturday - Thunderstorms - 16°C / 7°C",
+            //"Sunday - Rainy - 16°C / 8°C",
+    //};
+
+       // for (String dummyWeatherDay : dummyWeatherData) {
+        //mWeatherTextView.append(dummyWeatherDay + "\n\n\n");
+   // }
     }
 
     @Override

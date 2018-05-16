@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:26012172341:android:64e58dacc0483faa",
+        "mobilesdk_app_id": "1:26012172341:android:d94fb24a99f3027f",
         "android_client_info": {
-          "package_name": "com.google.firebase.udacity.friendlychat"
+          "package_name": "com.example.android.navdrawerapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "26012172341-muuo4l4l8drgfsbr2eusnv5epfcuhi89.apps.googleusercontent.com",
+          "client_id": "26012172341-tsmnqiq7alekr5g4l440fpjl0elqrte3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.google.firebase.udacity.friendlychat",
+            "package_name": "com.example.android.navdrawerapp",
             "certificate_hash": "e7f66c6e2fc219e28cd1f5ff650c7d5209a2e3f1"
           }
         },
@@ -52,17 +52,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:26012172341:android:d94fb24a99f3027f",
+        "mobilesdk_app_id": "1:26012172341:android:64e58dacc0483faa",
         "android_client_info": {
-          "package_name": "com.example.android.navdrawerapp"
+          "package_name": "com.google.firebase.udacity.friendlychat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "26012172341-tsmnqiq7alekr5g4l440fpjl0elqrte3.apps.googleusercontent.com",
+          "client_id": "26012172341-muuo4l4l8drgfsbr2eusnv5epfcuhi89.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.android.navdrawerapp",
+            "package_name": "com.google.firebase.udacity.friendlychat",
             "certificate_hash": "e7f66c6e2fc219e28cd1f5ff650c7d5209a2e3f1"
           }
         },
