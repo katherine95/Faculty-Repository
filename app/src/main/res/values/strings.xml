@@ -22,4 +22,9 @@
     <string name="registration_number">Registration Number</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="password_length">Password too short, enter minimum 6 characters!</string>
+    <string name="failed_auth">Authentication failed, check your email and password or sign up</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email">Email</string>
 </resources>

@@ -29,22 +29,25 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView chatForum = findViewById(R.id.chatForum);
+        //TextView chatForum = findViewById(R.id.chatForum);
+        //chatForum.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View view) {
+                //Intent chatForum = new Intent(MainActivity.this, Main2Activity.class);
+                //Toast.makeText(view.getContext(), "Open the Discussion Forum", Toast.LENGTH_SHORT).show();
+                //startActivity(chatForum);
+            //}
+        //});
+
+        FloatingActionButton chatForum = (FloatingActionButton) findViewById(R.id.chatForum);
         chatForum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent chatForum = new Intent(MainActivity.this, Main2Activity.class);
                 //Toast.makeText(view.getContext(), "Open the Discussion Forum", Toast.LENGTH_SHORT).show();
                 startActivity(chatForum);
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
             }
         });
 

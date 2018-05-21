@@ -5,4 +5,5 @@
     <color name="colorAccent">#39796b</color>
     <color name="btnSignUp">#39796b</color>
     <color name="btnSignActive">#A9d440</color>
+    <color name="dividerColor">#80CBC4</color>
 </resources>

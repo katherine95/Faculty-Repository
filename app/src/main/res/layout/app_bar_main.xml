@@ -33,19 +33,9 @@
 
             </ListView>
     </LinearLayout>
-    <TextView
-        android:id="@+id/chatForum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:layout_gravity="bottom|end"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/discussion_forum"/>
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/chatForum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
