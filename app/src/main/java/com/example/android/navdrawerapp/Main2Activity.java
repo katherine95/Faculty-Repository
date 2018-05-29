@@ -56,7 +56,7 @@ public class Main2Activity extends AppCompatActivity {
     private EditText mMessageEditText;
     private Button mSendButton;
 
-    private String mUsername;
+    String mUsername;
 
     //Firebase instance variables
     private FirebaseDatabase mFirebaseDatabase;
@@ -199,14 +199,14 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
+        inflater.inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.sign_out_menu:
+            case R.id.action_signout:
                 //sign out
                 AuthUI.getInstance().signOut(this);
                 return true;
