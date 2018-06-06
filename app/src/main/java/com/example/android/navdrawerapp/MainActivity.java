@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
 
         mUsername = ANONYMOUS;
         //Initialize Firebase Components
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        //mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_main);
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent chatForum = new Intent(MainActivity.this, Main2Activity.class);
-                //Toast.makeText(view.getContext(), "Open the Discussion Forum", Toast.LENGTH_SHORT).show();
                 startActivity(chatForum);
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         //.setAction("Action", null).show();
@@ -88,6 +87,19 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        /*TextView numbers = (TextView) findViewById(R.id.numbers);
+
+        // Set a click listener on that View
+        numbers.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers View is clicked on.
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
+                Toast.makeText(view.getContext(), "Open the list of numbers", Toast.LENGTH_SHORT).show();
+                startActivity(numbersIntent);
+            }
+        });*/
 
 
     //TextView mWeatherTextView = findViewById(R.id.tv_weather_data);
@@ -139,6 +151,7 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
+ 
                 Toast.makeText(this, "Signed In!", Toast.LENGTH_SHORT).show();
             } else if (resultCode == RESULT_CANCELED){
                 Toast.makeText(this, "Sign in cancelled", Toast.LENGTH_SHORT).show();
@@ -174,17 +187,6 @@ public class MainActivity extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_settings) {
-            //return true;
-        //}
-
-        //return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -193,17 +195,21 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_btit) {
+            Intent btit = new Intent(MainActivity.this, BTITActivity.class);
+            startActivity(btit);
+            return true;
+        } else if (id == R.id.nav_bsit) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_dcit) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_cict) {
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_signout) {
+            AuthUI.getInstance().signOut(this);
+            return true;
 
         }
 

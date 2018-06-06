@@ -5,19 +5,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_btit"
             android:icon="@drawable/ic_menu_camera"
             android:title="BTIT" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_bsit"
             android:icon="@drawable/ic_menu_gallery"
             android:title="BSIT" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_dcit"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="DCIT" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_cict"
             android:icon="@drawable/ic_menu_manage"
             android:title="CICT" />
     </group>
@@ -27,7 +27,7 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Staff sign in" />
             <item
                 android:id="@+id/nav_signout"
                 android:icon="@drawable/ic_menu_send"

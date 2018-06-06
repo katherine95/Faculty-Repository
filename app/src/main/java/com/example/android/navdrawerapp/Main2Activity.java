@@ -174,25 +174,31 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Signed In!", Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED){
-                Toast.makeText(this, "Sign in cancelled", Toast.LENGTH_SHORT).show();
-                finish();
-            } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK){
-                Uri selectedImageUri = data.getData();
-                StorageReference photoRef = mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+        if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
+            Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Sign in canceled!", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
+            Uri selectedImageUri = data.getData();
 
-                photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    //@Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        FriendlyMessage friendlyMessage = new FriendlyMessage(null, mUsername,downloadUrl.toString());
-                        mMessagesDatabaseReference.push().setValue(friendlyMessage);
-                    }
-                });
-            }
+            // Get a reference to store file at chat_photos/<FILENAME>
+            final StorageReference photoRef = mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+
+            photoRef.putFile(selectedImageUri)
+                    .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //When the image has successfully uploaded, get its download URL
+                            photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Uri dlUri = uri;
+                                    FriendlyMessage friendlyMessage = new FriendlyMessage(null, mUsername, dlUri.toString());
+                                    mMessagesDatabaseReference.push().setValue(friendlyMessage);
+                                }
+                            });
+                        }
+                    });
         }
     }
 

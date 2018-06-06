@@ -15,12 +15,16 @@
       },
       "oauth_client": [
         {
-          "client_id": "26012172341-tsmnqiq7alekr5g4l440fpjl0elqrte3.apps.googleusercontent.com",
+          "client_id": "26012172341-9hm4ccqat3t45cqtc0n0n9q7jk22lir3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.android.navdrawerapp",
             "certificate_hash": "e7f66c6e2fc219e28cd1f5ff650c7d5209a2e3f1"
           }
+        },
+        {
+          "client_id": "26012172341-35jev3i29m5q00cs1mb53l52ecirv4t7.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "26012172341-35jev3i29m5q00cs1mb53l52ecirv4t7.apps.googleusercontent.com",
