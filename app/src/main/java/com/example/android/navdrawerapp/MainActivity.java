@@ -1,5 +1,6 @@
 package com.example.android.navdrawerapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     private StorageReference mChatPhotosStorageReference;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,22 @@ public class MainActivity extends AppCompatActivity
         //Initialize Firebase Components
         //mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+        //initializing views
+        TextView username = findViewById(R.id.username);
+        TextView email = findViewById(R.id.email);
+        Button studentProfile = findViewById(R.id.student_profile);
+        Button lecturerProfile = findViewById(R.id.lecturer_profile);
+
+        /*//displaying logged in user name
+        if (user != null) {
+            username.setText("Welcome " + user.getDisplayName());
+            email.setText("Welcome " + user.getEmail());
+            //username = user.displayName;
+            //email = user.email;
+        }*/
+
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -88,6 +107,22 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        studentProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent studentprofile = new Intent(MainActivity.this, StudentProfileActivity.class);
+                startActivity(studentprofile);
+            }
+        });
+
+        lecturerProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lecturerprofile = new Intent(MainActivity.this, LecturerProfileActivity.class);
+                startActivity(lecturerprofile);
+            }
+        });
+
         /*TextView numbers = (TextView) findViewById(R.id.numbers);
 
         // Set a click listener on that View
@@ -103,7 +138,7 @@ public class MainActivity extends AppCompatActivity
 
 
     //TextView mWeatherTextView = findViewById(R.id.tv_weather_data);
-    ArrayList<String> dummyWeatherData = new ArrayList<>();
+    /*ArrayList<String> dummyWeatherData = new ArrayList<>();
 
         dummyWeatherData.add("ICI-Timetable");
         dummyWeatherData.add("Memo");
@@ -115,7 +150,7 @@ public class MainActivity extends AppCompatActivity
 
     ListView listView = (ListView) findViewById(R.id.list);
 
-    listView.setAdapter(dummyWeatherDataAdapter);
+    listView.setAdapter(dummyWeatherDataAdapter);*/
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -145,6 +180,7 @@ public class MainActivity extends AppCompatActivity
             }
         };
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -195,19 +231,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_btit) {
-            Intent btit = new Intent(MainActivity.this, BTITActivity.class);
-            startActivity(btit);
-            return true;
-        } else if (id == R.id.nav_bsit) {
+        if (id == R.id.nav_profile) {
+            //Intent btit = new Intent(MainActivity.this, BTITActivity.class);
+            //startActivity(btit);
+        } else if (id == R.id.nav_notifications) {
+            //Intent bsit = new Intent(MainActivity.this, YearActivity.class);
+            //startActivity(bsit);
+        } //else if (id == R.id.nav_dcit) {
 
-        } else if (id == R.id.nav_dcit) {
+        //} //else if (id == R.id.nav_cict) {}
 
-        } else if (id == R.id.nav_cict) {
+         else if (id == R.id.nav_chatforum) {
+            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_signout) {
+        } else if (id == R.id.nav_signoutchat) {
             AuthUI.getInstance().signOut(this);
             return true;
 

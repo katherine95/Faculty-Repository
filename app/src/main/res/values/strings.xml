@@ -27,4 +27,11 @@
     <string name="download">download</string>
     <string name="preview">preview</string>
     <string name="archive">archive</string>
+    <string name="create_student_profile">Create Profile</string>
+    <string name="create_lecturer_profile">Create Profile</string>
+    <string name="student">Student?</string>
+    <string name="lecturer">Lecturer?</string>
+    <string name="profile_picture">profile_picture</string>
+    <string name="update_student_profile">Update Profile</string>
+    <string name="update_lecturer_profile">Update Profile</string>
 </resources>

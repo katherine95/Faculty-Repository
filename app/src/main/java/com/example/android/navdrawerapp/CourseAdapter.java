@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -33,19 +35,15 @@ public class CourseAdapter extends ArrayAdapter<Course> {
 
         Course courseName = getItem(position);
 
-        /*boolean isPhoto = message.getPhotoUrl() != null;
-        if (isPhoto) {
-            messageTextView.setVisibility(View.GONE);
-            photoImageView.setVisibility(View.VISIBLE);
-            Glide.with(photoImageView.getContext())
-                    .load(message.getPhotoUrl())
-                    .into(photoImageView);
+        boolean isCourse = courseName.getCourseUrl() != null;
+        if (isCourse) {
+            courseTextview.setVisibility(View.VISIBLE);
+            Picasso.with(courseTextview.getContext())
+                    .load(courseName.getCourseUrl())
+                    .into((Target) courseTextview);
         } else {
-            messageTextView.setVisibility(View.VISIBLE);
-            photoImageView.setVisibility(View.GONE);
-            messageTextView.setText(message.getText());
+            courseTextview.setVisibility(View.GONE);
         }
-        authorTextView.setText(message.getName());*/
 
         return convertView;
     }

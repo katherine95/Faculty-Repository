@@ -24,7 +24,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity" />
-        <activity android:name=".BTITActivity"></activity>
+        <activity android:name=".BTITActivity" />
+        <activity android:name=".BSITActivity" />
+        <activity android:name=".YearActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".StudentProfileActivity" />
+        <activity android:name=".LecturerProfileActivity"></activity>
     </application>
 
 </manifest>

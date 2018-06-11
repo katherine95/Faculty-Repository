@@ -5,33 +5,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_btit"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="BTIT" />
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_local_library_black_24dp"
+            android:title="Profile" />
         <item
-            android:id="@+id/nav_bsit"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="BSIT" />
-        <item
-            android:id="@+id/nav_dcit"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="DCIT" />
-        <item
-            android:id="@+id/nav_cict"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="CICT" />
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_priority_high_black_24dp"
+            android:title="Notifications" />
     </group>
-
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Staff sign in" />
+                android:id="@+id/nav_chatforum"
+                android:icon="@drawable/ic_chat_black_24dp"
+                android:title="Chat Forum" />
             <item
-                android:id="@+id/nav_signout"
+                android:id="@+id/nav_signoutchat"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Sign Out" />
+                android:title="Sign Out Chat" />
         </menu>
     </item>
 

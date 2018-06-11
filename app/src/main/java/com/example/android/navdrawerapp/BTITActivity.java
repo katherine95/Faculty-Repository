@@ -1,6 +1,8 @@
 package com.example.android.navdrawerapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,10 +23,13 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,18 +62,15 @@ public class BTITActivity extends AppCompatActivity {
         mCourseReference = mFirebaseStorage.getReference().child("cryptography");
 
         // Initialize references to views
-        mCourseListView = (ListView) findViewById(R.id.messageListView);
+        mCourseListView = (ListView) findViewById(R.id.courseListView);
 
         // Initialize course ListView and its adapter
         List<Course> courses = new ArrayList<>();
         mCourseAdapter = new CourseAdapter(this,R.layout.course_list_item, courses);
         mCourseListView.setAdapter(mCourseAdapter);
 
-        //mCourseReference.addValueEventlistener(new ValueEventlistener(){
 
-        //});
-
-       /* mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -92,31 +95,40 @@ public class BTITActivity extends AppCompatActivity {
                             RC_SIGN_IN);
                 }
             }
-        };*/
+        };
 
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Signed In!", Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED){
-                Toast.makeText(this, "Sign in cancelled", Toast.LENGTH_SHORT).show();
-                finish();
-            } /*else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK){
-                Uri selectedImageUri = data.getData();
-                StorageReference photoRef = mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+        if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
+                //Uri selectedImageUri = data.getData();
+                //StorageReference courseRef = mCourseReference.child("cryptography");
+            mCourseReference = mFirebaseStorage.getReference().child("cryptography");
 
-                photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            try{
+            File localFile = File.createTempFile("cryptography", "jpg");
+
+            mCourseReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    // Local temp file has been created
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+        } catch (IOException e ) {}
+
+                //photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     //@Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    //public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         //Uri downloadUrl = taskSnapshot.getDownloadUrl();
                         //FriendlyMessage friendlyMessage = new FriendlyMessage(null, mUsername,downloadUrl.toString());
                         //mMessagesDatabaseReference.push().setValue(friendlyMessage);
-                    }
-                });
-            }*/
+                //});
         }
     }
 
