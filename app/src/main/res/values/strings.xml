@@ -8,4 +8,6 @@
     </string>
 
     <string name="sign_in">Sign In with Google</string>
+    <string name="text_empty_message">No Books Available</string>
+    <string name="action_profile">Profile</string>
 </resources>
