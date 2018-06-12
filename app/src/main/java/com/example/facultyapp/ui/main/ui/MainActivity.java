@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,6 +18,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.facultyapp.R;
+import com.example.facultyapp.data.model.User;
+import com.example.facultyapp.databinding.ActivityMainBinding;
 import com.example.facultyapp.settings.Settings;
 import com.example.facultyapp.ui.auth.ui.AuthActivity;
 import com.example.facultyapp.ui.main.viewmodel.MainViewModel;
@@ -28,12 +31,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.tingyik90.snackprogressbar.SnackProgressBar;
 import com.tingyik90.snackprogressbar.SnackProgressBarManager;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.example.facultyapp.BR.user;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
+    @BindView(R.id.coordinator_layout)
+    CoordinatorLayout coordinatorLayout;
+    User user;
     private ProfileDialog profileDialog;
     private SnackProgressBarManager snackProgressBarManager;
     private GoogleApiClient mGoogleApiClient;
@@ -50,6 +55,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+
+        profileDialog = ProfileDialog.newInstance(((dialog, which) -> logout()));
+
+        //Initialize Snackbar Manager -> Attach/pin to the bottom of the layout :)
+        snackProgressBarManager = new SnackProgressBarManager(coordinatorLayout)
+                .setProgressBarColor(R.color.colorAccent)
+                .setOverlayLayoutAlpha(0.6f);
 
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
