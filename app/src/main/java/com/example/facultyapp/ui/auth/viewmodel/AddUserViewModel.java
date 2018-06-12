@@ -4,8 +4,9 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.os.AsyncTask;
 
-import com.androidstudy.andelamedmanager.data.AppDatabase;
-import com.androidstudy.andelamedmanager.data.model.User;
+import com.example.facultyapp.data.AppDatabase;
+import com.example.facultyapp.data.model.User;
+
 
 public class AddUserViewModel extends AndroidViewModel {
     private AppDatabase appDatabase;

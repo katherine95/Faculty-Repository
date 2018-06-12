@@ -9,11 +9,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.androidstudy.andelamedmanager.R;
-import com.androidstudy.andelamedmanager.data.model.User;
-import com.androidstudy.andelamedmanager.settings.Settings;
-import com.androidstudy.andelamedmanager.ui.auth.viewmodel.AddUserViewModel;
-import com.androidstudy.andelamedmanager.ui.main.ui.MainActivity;
+import com.example.facultyapp.R;
+import com.example.facultyapp.data.model.User;
+import com.example.facultyapp.settings.Settings;
+import com.example.facultyapp.ui.auth.viewmodel.AddUserViewModel;
+import com.example.facultyapp.ui.main.ui.MainActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;

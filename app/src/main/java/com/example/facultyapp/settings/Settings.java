@@ -10,7 +10,7 @@ import timber.log.Timber;
 public class Settings {
     //Keys for Shared preferences
     //This would be the name of our shared preferences
-    public static final String SHARED_PREF_NAME = "andela";
+    public static final String SHARED_PREF_NAME = "faculty";
     //Check if the User is logged in or not
     public static final String LOGGED_IN_SHARED_PREF = "loggedin";
     //Check if its first time use

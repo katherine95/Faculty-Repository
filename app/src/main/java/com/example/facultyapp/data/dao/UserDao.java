@@ -4,7 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import com.androidstudy.andelamedmanager.data.model.User;
+import com.example.facultyapp.data.model.User;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 

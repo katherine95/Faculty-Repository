@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.androidstudy.andelamedmanager.R;
-import com.androidstudy.andelamedmanager.data.model.User;
-import com.androidstudy.andelamedmanager.ui.main.viewmodel.MainViewModel;
 import com.bumptech.glide.Glide;
+import com.example.facultyapp.R;
+import com.example.facultyapp.data.model.User;
+import com.example.facultyapp.ui.main.viewmodel.MainViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
