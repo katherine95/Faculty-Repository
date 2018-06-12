@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.androidstudy.andelamedmanager.ui.auth.ui.AuthActivity">
+    tools:context="com.example.facultyapp.ui.auth.ui.AuthActivity">
 
     <ImageView
         android:layout_width="match_parent"
