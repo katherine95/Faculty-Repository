@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "792882484503",
+    "firebase_url": "https://facultyapp-7a79f.firebaseio.com",
+    "project_id": "facultyapp-7a79f",
+    "storage_bucket": "facultyapp-7a79f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792882484503:android:db68d3e2669e2cd7",
+        "android_client_info": {
+          "package_name": "com.example.facultyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792882484503-0c8cnkogknion4mk59eec6b2sl0jga3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.facultyapp",
+            "certificate_hash": "b0ebe455b4f39e647eeb41d4aef11bdfb77a9193"
+          }
+        },
+        {
+          "client_id": "792882484503-33lahjnvkodtf2jcsiig5b35493hgn90.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "792882484503-33lahjnvkodtf2jcsiig5b35493hgn90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5V2DB0yy8r_yFMJLnjek5TG7ZX1I_TBg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792882484503-33lahjnvkodtf2jcsiig5b35493hgn90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
