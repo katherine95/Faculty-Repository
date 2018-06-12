@@ -7,4 +7,5 @@
         \n\n&#8226; App preferences will be persisted across app installs.
     </string>
 
+    <string name="sign_in">Sign In with Google</string>
 </resources>
