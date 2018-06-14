@@ -1,7 +1,7 @@
 def versions = [
-        supportLib      : '27.0.2',
+        supportLib      : '27.1.1',
         constraintLayout: '1.0.2',
-        playServices    : '11.8.0',
+        playServices    : '15.0.1',
         timber          : '4.6.0',
         glide           : '4.6.1',
         rxjava2         : '2.1.9',
