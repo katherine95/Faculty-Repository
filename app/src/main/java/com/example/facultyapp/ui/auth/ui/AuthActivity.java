@@ -122,7 +122,7 @@ public class AuthActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onResume() {
         super.onResume();
         if (Settings.isLoggedIn()) {
-            Intent auth = new Intent(getApplicationContext(), MainActivity.class);
+            Intent auth = new Intent(getApplicationContext(), LecturerActivity.class);
             startActivity(auth);
             finish();
         }

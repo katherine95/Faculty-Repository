@@ -43,8 +43,7 @@ public class LecturerActivity extends AppCompatActivity {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
         FloatingActionButton fab = findViewById(id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        fab.setOnClickListener(view -> getPDF());
     }
 
     //this function will get the pdf from the storage
