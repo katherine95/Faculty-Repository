@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:11.8.0'
     implementation 'com.google.firebase:firebase-auth:11.8.0'
     implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor deps.room.compiler
     implementation deps.room.lifecycleExtensions
     //Butterknife - Bind Views

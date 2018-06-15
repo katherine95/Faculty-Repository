@@ -10,12 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ui.main.ui.MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.auth.ui.AuthActivity"
             android:screenOrientation="portrait"
@@ -26,7 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".ui.main.ui.LecturerActivity"
+            android:label="@string/title_activity_lecturer"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
