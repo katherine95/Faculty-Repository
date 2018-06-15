@@ -79,6 +79,7 @@ dependencies {
     implementation deps.spark
     //Circular Progress Bar
     //implementation deps.circleProgress
+    implementation deps.pdfViewer
 
     //Testing !!!
     testImplementation 'junit:junit:4.12'

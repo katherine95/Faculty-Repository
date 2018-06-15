@@ -23,6 +23,8 @@ def versions = [
         state           : '1.1.6',
         spark           : '1.2.0',
         circleProgress  : '1.1',
+        pdfViewer  : '2.8.2',
+
 ]
 
 ext.versions = versions
@@ -79,5 +81,7 @@ ext.deps = [
         ],
         spark           : 'com.robinhood.spark:spark:' + versions.spark,
         circleProgress  : 'io.github.marktony:circle-progress-bar:' + versions.circleProgress,
+        pdfViewer       :  'com.github.barteksc:android-pdf-viewer:' + versions.pdfViewer,
+
 
 ]
