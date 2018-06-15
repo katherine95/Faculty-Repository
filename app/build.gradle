@@ -41,6 +41,9 @@ dependencies {
     implementation deps.support.constraintLayout
     //Room - Sqlite Wrapper
     implementation deps.room.core
+    implementation 'com.google.firebase:firebase-storage:11.8.0'
+    implementation 'com.google.firebase:firebase-auth:11.8.0'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
     annotationProcessor deps.room.compiler
     implementation deps.room.lifecycleExtensions
     //Butterknife - Bind Views

@@ -10,3 +10,5 @@
 .externalNativeBuild
 
 app/google-services.json
+app/src/lecturer/google-services.json
+app/src/student/google-services.json

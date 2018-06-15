@@ -30,7 +30,7 @@
                 android:layout_marginBottom="10dp">
 
                 <com.example.facultyapp.util.CustomTextView
-                    android:id="@+id/text"
+                    android:id="@+id/bookName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -65,7 +65,7 @@
                     android:id="@+id/linear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/text"
+                    android:layout_below="@+id/bookName"
                     android:orientation="vertical">
 
                     <com.github.barteksc.pdfviewer.PDFView
@@ -99,6 +99,7 @@
                         android:textStyle="bold" />
 
                     <com.example.facultyapp.util.CustomTextView
+                        android:id="@+id/bookYear"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="10dp"
@@ -123,6 +124,7 @@
                         android:textStyle="bold" />
 
                     <com.example.facultyapp.util.CustomTextView
+                        android:id="@+id/bookSemester"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="10dp"
