@@ -34,7 +34,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintStart_toEndOf="@+id/image_view_user"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Juma Allan" />
+            tools:text="Katherine Kimetto" />
 
         <TextView
             android:id="@+id/text_view_email"
@@ -43,7 +43,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toStartOf="@+id/text_view_name"
             app:layout_constraintTop_toBottomOf="@+id/text_view_name"
-            tools:text="allanjuma@gmail.com" />
+            tools:text="kathiekim95@gmail.com" />
 
         <View
             android:id="@+id/view"
