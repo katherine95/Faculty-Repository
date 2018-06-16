@@ -71,28 +71,10 @@
 
             </FrameLayout>
 
-            <LinearLayout
-                android:id="@+id/linearOne"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/recyclerView"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/mainDashboardWelcomeText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@{`Hello ` + user.name}"
-                    tools:text="Hello ," />
-
-            </LinearLayout>
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:clipToPadding="false"
                 tools:listitem="@layout/row_main_books" />
 
