@@ -3,11 +3,12 @@
 
     <string name="text_sign_in_advantages">
         When signed in:
-        \n\n&#8226; Your Faculty Data will be backed up to Google Drive.
+        \n\n&#8226; You will be able to access Shared Learning Materials.
         \n\n&#8226; App preferences will be persisted across app installs.
     </string>
 
     <string name="sign_in">Sign In with Google</string>
     <string name="text_empty_message">No Books Available</string>
     <string name="action_profile">Profile</string>
+    <string name="title_activity_lecturer">LecturerActivity</string>
 </resources>

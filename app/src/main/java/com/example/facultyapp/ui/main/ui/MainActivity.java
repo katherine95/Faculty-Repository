@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,30 +21,49 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.facultyapp.R;
+import com.example.facultyapp.data.model.Notes;
 import com.example.facultyapp.data.model.User;
 import com.example.facultyapp.databinding.ActivityMainBinding;
 import com.example.facultyapp.settings.Settings;
 import com.example.facultyapp.ui.auth.ui.AuthActivity;
+import com.example.facultyapp.ui.main.adapter.StudentAdapter;
 import com.example.facultyapp.ui.main.viewmodel.MainViewModel;
+import com.example.facultyapp.util.Constants;
 import com.example.facultyapp.view.ProfileDialog;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.tingyik90.snackprogressbar.SnackProgressBar;
 import com.tingyik90.snackprogressbar.SnackProgressBarManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
     @BindView(R.id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
+
     User user;
     private ProfileDialog profileDialog;
     private SnackProgressBarManager snackProgressBarManager;
     private GoogleApiClient mGoogleApiClient;
+
+    //database reference
+    private DatabaseReference mDatabase;
+
+    private List<Notes> notesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +77,26 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+
+        /**
+         service firebase.storage {
+         match /b/{bucket}/o {
+         match /{allPaths=**} {
+         allow read, write;
+         }
+         }
+         }
+
+
+
+         {
+         "rules": {
+         ".read": true,
+         ".write": true
+         }
+         }
+         **/
+
 
         profileDialog = ProfileDialog.newInstance(((dialog, which) -> logout()));
 
@@ -73,6 +115,35 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        LinearLayoutManager mLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        notesList = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+
+        //adding an event listener to fetch values
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //iterating through all the values in database
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Notes notes = postSnapshot.getValue(Notes.class);
+                    notesList.add(notes);
+                }
+
+                StudentAdapter studentAdapter = new StudentAdapter(getApplicationContext(), notesList);
+                recyclerView.setAdapter(studentAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override

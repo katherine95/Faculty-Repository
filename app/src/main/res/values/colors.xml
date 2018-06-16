@@ -35,4 +35,9 @@
     <color name="keyPressed">#222</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey">#DBD8D9</color>
+
+    <color name="colorBackroundWhite">#f0f2ea</color>
+    <color name="green">#00B873</color>
+    <color name="colorGray">#495C67</color>
+    <color name="colorOrange">#F68159</color>
 </resources>
