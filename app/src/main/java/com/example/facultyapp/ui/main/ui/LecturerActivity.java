@@ -87,7 +87,7 @@ public class LecturerActivity extends AppCompatActivity {
         sRef.putFile(data)
                 .addOnSuccessListener(taskSnapshot -> {
 
-                    Notes notes = new Notes("Introduction to Android", taskSnapshot.getDownloadUrl().toString(), "4", "1");
+                    Notes notes = new Notes("Introduction to Android", sRef.getDownloadUrl().toString(), "4", "1");
                     mDatabaseReference.child(mDatabaseReference.push().getKey()).setValue(notes);
                 })
                 .addOnFailureListener(exception -> Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show())
