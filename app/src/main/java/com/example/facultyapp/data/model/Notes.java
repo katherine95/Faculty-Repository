@@ -1,34 +1,50 @@
 package com.example.facultyapp.data.model;
 
 public class Notes {
-    public String BookName;
-    public String BookUrl;
-    public String BookYear;
-    public String BookSemester;
+    public String bookName;
+    public String bookUrl;
+    public String bookYear;
+    public String bookSemester;
 
     public Notes() {
     }
 
     public Notes(String bookName, String bookUrl, String bookYear, String bookSemester) {
-        BookName = bookName;
-        BookUrl = bookUrl;
-        BookYear = bookYear;
-        BookSemester = bookSemester;
+        this.bookName = bookName;
+        this.bookUrl = bookUrl;
+        this.bookYear = bookYear;
+        this.bookSemester = bookSemester;
     }
 
     public String getBookName() {
-        return BookName;
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     public String getBookUrl() {
-        return BookUrl;
+        return bookUrl;
+    }
+
+    public void setBookUrl(String bookUrl) {
+        this.bookUrl = bookUrl;
     }
 
     public String getBookYear() {
-        return BookYear;
+        return bookYear;
+    }
+
+    public void setBookYear(String bookYear) {
+        this.bookYear = bookYear;
     }
 
     public String getBookSemester() {
-        return BookSemester;
+        return bookSemester;
+    }
+
+    public void setBookSemester(String bookSemester) {
+        this.bookSemester = bookSemester;
     }
 }

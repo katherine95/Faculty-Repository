@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.facultyapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -12,7 +16,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.ui.MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".ui.auth.ui.AuthActivity"
             android:screenOrientation="portrait"
@@ -26,7 +32,9 @@
         <activity
             android:name=".ui.main.ui.LecturerActivity"
             android:label="@string/title_activity_lecturer"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

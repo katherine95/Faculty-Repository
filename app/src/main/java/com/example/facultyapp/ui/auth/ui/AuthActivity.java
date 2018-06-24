@@ -13,7 +13,6 @@ import com.example.facultyapp.R;
 import com.example.facultyapp.data.model.User;
 import com.example.facultyapp.settings.Settings;
 import com.example.facultyapp.ui.auth.viewmodel.AddUserViewModel;
-import com.example.facultyapp.ui.main.ui.LecturerActivity;
 import com.example.facultyapp.ui.main.ui.MainActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -107,7 +106,7 @@ public class AuthActivity extends AppCompatActivity implements GoogleApiClient.O
 
             Settings.setLoggedInSharedPref(true);
 
-            Intent intent = new Intent(getApplicationContext(), LecturerActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -122,7 +121,7 @@ public class AuthActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onResume() {
         super.onResume();
         if (Settings.isLoggedIn()) {
-            Intent auth = new Intent(getApplicationContext(), LecturerActivity.class);
+            Intent auth = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(auth);
             finish();
         }

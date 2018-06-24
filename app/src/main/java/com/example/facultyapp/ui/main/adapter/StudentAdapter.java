@@ -1,6 +1,7 @@
 package com.example.facultyapp.ui.main.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MenuOpti
         holder.bookName.setText(menuItem.getBookName());
         holder.bookYear.setText(menuItem.getBookYear());
         holder.bookSemester.setText(menuItem.getBookSemester());
+        holder.pdfView.fromUri(Uri.parse(menuItem.bookUrl));
     }
 
     @Override
