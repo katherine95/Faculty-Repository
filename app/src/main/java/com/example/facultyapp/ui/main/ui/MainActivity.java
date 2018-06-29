@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,11 +16,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.example.facultyapp.Main2Activity;
 import com.example.facultyapp.R;
 import com.example.facultyapp.data.model.Notes;
 import com.example.facultyapp.data.model.User;
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -77,6 +81,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+
+        FloatingActionButton chatForum = (FloatingActionButton) findViewById(R.id.chatForum);
+        chatForum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chatForum = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(chatForum);
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //.setAction("Action", null).show();
+            }
+        });
 
         /**
          service firebase.storage {

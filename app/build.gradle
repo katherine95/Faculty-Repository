@@ -44,9 +44,10 @@ dependencies {
     implementation deps.room.core
     //noinspection GradleCompatible
     implementation 'com.google.firebase:firebase-storage:16.0.1'
-    implementation 'com.google.firebase:firebase-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.firebaseui:firebase-ui-auth:3.2.1'
     annotationProcessor deps.room.compiler
     implementation deps.room.lifecycleExtensions
     //Butterknife - Bind Views
@@ -86,11 +87,12 @@ dependencies {
     //Circular Progress Bar
     //implementation deps.circleProgress
 
-    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation deps.pdfViewer
 
     //Testing !!!
     testImplementation 'junit:junit:4.12'
+    //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:2.2.2', {

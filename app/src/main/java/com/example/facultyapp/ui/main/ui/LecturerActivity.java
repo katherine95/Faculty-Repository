@@ -63,7 +63,7 @@ public class LecturerActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PDF_CODE);
+        startActivityForResult(Intent.createChooser(intent, "Select file"), PICK_PDF_CODE);
     }
 
 
