@@ -1,5 +1,6 @@
 package com.example.facultyapp.ui.auth.ui;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.example.facultyapp.R;
 import com.example.facultyapp.data.model.User;
 import com.example.facultyapp.settings.Settings;
 import com.example.facultyapp.ui.auth.viewmodel.AddUserViewModel;
+import com.example.facultyapp.ui.main.ui.LecturerActivity;
 import com.example.facultyapp.ui.main.ui.MainActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

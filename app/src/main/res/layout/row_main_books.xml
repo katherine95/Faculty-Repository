@@ -59,6 +59,20 @@
                         android:textColor="@color/green"
                         android:textSize="12dp"
                         android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/download"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        card_view:srcCompat="@drawable/ic_get_app_black_24dp"
+                        android:contentDescription="@string/download"/>
+                    <ImageView
+                        android:id="@+id/preview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        card_view:srcCompat="@drawable/ic_view_agenda_black_24dp"
+                        android:contentDescription="@string/preview" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -71,7 +85,7 @@
                     <com.github.barteksc.pdfviewer.PDFView
                         android:id="@+id/pdfView"
                         android:layout_width="match_parent"
-                        android:layout_height="140dp"
+                        android:layout_height="80dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"/>
