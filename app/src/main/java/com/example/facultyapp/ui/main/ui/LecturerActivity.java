@@ -15,8 +15,11 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,17 +61,31 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
 
     //this is the pic pdf code used in file chooser
     final static int PICK_PDF_CODE = 2342;
-    @BindView(R.id.coordinator_layout)
+    @BindView(id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
     @BindView(id.imageLec)
     CircleImageView imageLec;
     @BindView(id.textViewLec)
     TextView textViewLec;
-    @BindView(R.id.textViewTotalBooks)
+    @BindView(id.textViewTotalBooks)
     TextView textViewTotalBooks;
+
+    @BindView(id.etBookName)
+    EditText etBookName;
+    @BindView(id.etSemester)
+    EditText etSemester;
+    @BindView(id.etYear)
+    EditText etYear;
+
     StorageReference mStorageReference;
     DatabaseReference mDatabaseReference;
     User user;
+    @BindView(id.chooseBook)
+    Button chooseBook;
+    @BindView(id.saveBook)
+    Button saveBook;
+    String name, year, semester, imagePath;
+    Uri imageData;
     private List<Notes> notesList;
     private ProfileDialog profileDialog;
     private SnackProgressBarManager snackProgressBarManager;
@@ -137,8 +154,38 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
             }
         });
 
-//        FloatingActionButton fab = findViewById(id.fab);
-//        fab.setOnClickListener(view -> getPDF());
+        chooseBook.setOnClickListener(view -> getPDF());
+        saveBook.setOnClickListener(view -> {
+            if (imageData != null) {
+                validateInput();
+            } else {
+                Toast.makeText(this, "Choose a book first", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void validateInput() {
+
+        name = etBookName.getText().toString().trim();
+        year = etYear.getText().toString().trim();
+        semester = etSemester.getText().toString().trim();
+
+        if (TextUtils.isEmpty(name)) {
+            etBookName.setError("Please choose book name");
+            return;
+        }
+
+        if (TextUtils.isEmpty(year)) {
+            etYear.setError("Please choose year");
+            return;
+        }
+
+        if (TextUtils.isEmpty(semester)) {
+            etSemester.setError("Please choose semester");
+            return;
+        }
+
+        uploadFile(imageData);
     }
 
     //this function will get the pdf from the storage
@@ -169,8 +216,7 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
         if (requestCode == PICK_PDF_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             //if a file is selected
             if (data.getData() != null) {
-                //uploading the file
-                uploadFile(data.getData());
+                imageData = data.getData();
             } else {
                 Toast.makeText(this, "No file chosen", Toast.LENGTH_SHORT).show();
             }
@@ -181,8 +227,7 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
         StorageReference sRef = mStorageReference.child(Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + ".pdf");
         sRef.putFile(data)
                 .addOnSuccessListener(taskSnapshot -> {
-
-                    Notes notes = new Notes("Introduction to Android", sRef.getDownloadUrl().toString(), "4", "1");
+                    Notes notes = new Notes(name, sRef.getDownloadUrl().toString(), year, semester);
                     mDatabaseReference.child(mDatabaseReference.push().getKey()).setValue(notes);
                 })
                 .addOnFailureListener(exception -> Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show())
@@ -201,7 +246,7 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem profileItem = menu.findItem(R.id.action_profile);
+        MenuItem profileItem = menu.findItem(id.action_profile);
         Glide.with(this)
                 .asBitmap()
                 .load(user.getImageUrl())
