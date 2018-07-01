@@ -83,8 +83,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         chatForum.setOnClickListener(view -> {
             Intent chatForum1 = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(chatForum1);
-            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            //.setAction("Action", null).show();
         });
 
         profileDialog = ProfileDialog.newInstance(((dialog, which) -> logout()));

@@ -162,5 +162,19 @@
         <item name="android:fontFamily">@font/oxygen_bold</item>
     </style>
 
+    <style name="dashBoardCardStatsTitle">
+        <item name="android:textColor">@color/dashboard</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/oxygen_regular</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="dashBoardCardStatsDataReal">
+        <item name="android:textColor">@color/scout_blue_dashboard_percentage</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:fontFamily">@font/oxygen_regular</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
     <dimen name="margin_average">8dp</dimen>
 </resources>
