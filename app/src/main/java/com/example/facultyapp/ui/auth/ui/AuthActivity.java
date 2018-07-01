@@ -1,6 +1,5 @@
 package com.example.facultyapp.ui.auth.ui;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +21,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,11 +29,10 @@ import timber.log.Timber;
 public class AuthActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final int RC_SIGN_IN = 121;
-
     @BindView(R.id.loginButton)
     Button loginButton;
-
     GoogleApiClient mGoogleApiClient;
+    private String USER_TYPE;
     private AddUserViewModel addUserViewModel;
 
     @Override
@@ -46,6 +43,8 @@ public class AuthActivity extends AppCompatActivity implements GoogleApiClient.O
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_auth);
         ButterKnife.bind(this);
+
+        USER_TYPE = getIntent().getStringExtra("type");
 
         addUserViewModel = ViewModelProviders.of(this).get(AddUserViewModel.class);
 
@@ -108,25 +107,23 @@ public class AuthActivity extends AppCompatActivity implements GoogleApiClient.O
             ));
 
             Settings.setLoggedInSharedPref(true);
+            if (USER_TYPE.equals("0")) {
+                Settings.setIsStudentSharedPref(true);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (USER_TYPE.equals("1")) {
+                Settings.setIsStudentSharedPref(false);
+                Intent intent = new Intent(getApplicationContext(), LecturerActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
         }
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (Settings.isLoggedIn()) {
-            Intent auth = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(auth);
-            finish();
-        }
     }
 }

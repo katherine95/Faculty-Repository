@@ -155,5 +155,12 @@
         <item name="android:fontFamily">@font/oxygen_regular</item>
     </style>
 
+    <style name="loginPageCardFooter">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/oxygen_bold</item>
+    </style>
+
     <dimen name="margin_average">8dp</dimen>
 </resources>

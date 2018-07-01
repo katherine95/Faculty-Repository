@@ -16,19 +16,19 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.example.facultyapp.ui.chat.ChatActivity;
 import com.example.facultyapp.R;
 import com.example.facultyapp.data.model.Notes;
 import com.example.facultyapp.data.model.User;
 import com.example.facultyapp.databinding.ActivityMainBinding;
 import com.example.facultyapp.settings.Settings;
 import com.example.facultyapp.ui.auth.ui.AuthActivity;
+import com.example.facultyapp.ui.auth.ui.WelcomeActivity;
+import com.example.facultyapp.ui.chat.ChatActivity;
 import com.example.facultyapp.ui.main.adapter.StudentAdapter;
 import com.example.facultyapp.ui.main.viewmodel.MainViewModel;
 import com.example.facultyapp.util.Constants;
@@ -82,36 +82,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
-        FloatingActionButton chatForum = (FloatingActionButton) findViewById(R.id.chatForum);
-        chatForum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent chatForum = new Intent(MainActivity.this, ChatActivity.class);
-                startActivity(chatForum);
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //.setAction("Action", null).show();
-            }
+        FloatingActionButton chatForum = findViewById(R.id.chatForum);
+        chatForum.setOnClickListener(view -> {
+            Intent chatForum1 = new Intent(MainActivity.this, ChatActivity.class);
+            startActivity(chatForum1);
+            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            //.setAction("Action", null).show();
         });
-
-        /**
-         service firebase.storage {
-         match /b/{bucket}/o {
-         match /{allPaths=**} {
-         allow read, write;
-         }
-         }
-         }
-
-
-
-         {
-         "rules": {
-         ".read": true,
-         ".write": true
-         }
-         }
-         **/
-
 
         profileDialog = ProfileDialog.newInstance(((dialog, which) -> logout()));
 
@@ -220,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             //TODO :: CLEAR DB
 
             //Redirect User to Login Page
-            Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
+            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
             finish();
         });
