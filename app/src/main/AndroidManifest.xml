@@ -22,6 +22,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
+        </activity>
         <activity
             android:name=".ui.main.ui.LecturerActivity"
             android:label="@string/app_name"

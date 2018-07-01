@@ -63,9 +63,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private SnackProgressBarManager snackProgressBarManager;
     private GoogleApiClient mGoogleApiClient;
 
-    //database reference
-    private DatabaseReference mDatabase;
-
     private List<Notes> notesList;
 
     @Override
@@ -114,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         notesList = new ArrayList<>();
-        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
         //adding an event listener to fetch values
         mDatabase.addValueEventListener(new ValueEventListener() {
