@@ -185,6 +185,16 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
             return;
         }
 
+        if (!year.equals("1") || !year.equals("2") || !year.equals("3") || !year.equals("4") ) {
+            etYear.setError("Please choose correct year");
+            return;
+        }
+
+        if (!semester.equals("1") || !semester.equals("2")) {
+            etSemester.setError("Please choose correct semester");
+            return;
+        }
+
         uploadFile(imageData);
     }
 
