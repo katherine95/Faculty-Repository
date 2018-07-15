@@ -76,6 +76,8 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
     EditText etSemester;
     @BindView(id.etYear)
     EditText etYear;
+    @BindView(R.id.allBooks)
+    Button allBooks;
 
     StorageReference mStorageReference;
     DatabaseReference mDatabaseReference;
@@ -120,7 +122,6 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
@@ -162,6 +163,13 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
                 Toast.makeText(this, "Choose a book first", Toast.LENGTH_SHORT).show();
             }
         });
+
+        allBooks.setOnClickListener(view -> showAllBooks());
+    }
+
+    private void showAllBooks() {
+        Intent intent = new Intent(getApplicationContext(), BooksActivity.class);
+        startActivity(intent);
     }
 
     private void validateInput() {
@@ -185,15 +193,15 @@ public class LecturerActivity extends AppCompatActivity implements GoogleApiClie
             return;
         }
 
-        if (!year.equals("1") || !year.equals("2") || !year.equals("3") || !year.equals("4") ) {
-            etYear.setError("Please choose correct year");
-            return;
-        }
-
-        if (!semester.equals("1") || !semester.equals("2")) {
-            etSemester.setError("Please choose correct semester");
-            return;
-        }
+//        if (!year.equals("1") || !year.equals("2") || !year.equals("3") || !year.equals("4") ) {
+//            etYear.setError("Please choose correct year");
+//            return;
+//        }
+//
+//        if (!semester.equals("1") || !semester.equals("2")) {
+//            etSemester.setError("Please choose correct semester");
+//            return;
+//        }
 
         uploadFile(imageData);
     }

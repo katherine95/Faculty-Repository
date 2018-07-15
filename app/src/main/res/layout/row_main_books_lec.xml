@@ -42,35 +42,14 @@
                 android:layout_marginEnd="20dp"
                 android:gravity="center_vertical">
 
-                <View
-                    android:layout_width="7dp"
-                    android:layout_height="7dp"
-                    android:background="@drawable/gree_circle" />
-
-                <com.example.facultyapp.util.CustomTextView
+                <Button
+                    android:id="@+id/deleteBook"
+                    style="@style/allBlueButtons"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="READ"
-                    android:textColor="@color/green"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/download"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/download"
-                    android:padding="10dp"
-                    card_view:srcCompat="@drawable/ic_get_app_black_24dp" />
-
-                <ImageView
-                    android:id="@+id/preview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/preview"
-                    android:padding="10dp"
-                    card_view:srcCompat="@drawable/ic_view_agenda_black_24dp" />
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_blue_button"
+                    android:text="Delete"
+                    android:textAllCaps="false" />
 
             </LinearLayout>
 

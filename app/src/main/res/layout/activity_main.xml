@@ -79,6 +79,7 @@
                 tools:listitem="@layout/row_main_books" />
 
         </RelativeLayout>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/chatForum"
             android:layout_width="wrap_content"
