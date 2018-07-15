@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.facultyapp.R;
 import com.example.facultyapp.data.model.Notes;
+import com.example.facultyapp.ui.main.adapter.BooksAdapter;
 import com.example.facultyapp.ui.main.adapter.StudentAdapter;
 import com.example.facultyapp.util.Constants;
 import com.google.firebase.database.DataSnapshot;
@@ -53,8 +54,8 @@ public class BooksActivity extends AppCompatActivity {
                     notesList.add(notes);
                 }
 
-                StudentAdapter studentAdapter = new StudentAdapter(getApplicationContext(), notesList);
-                recyclerView.setAdapter(studentAdapter);
+                BooksAdapter booksAdapter = new BooksAdapter(getApplicationContext(), notesList);
+                recyclerView.setAdapter(booksAdapter);
             }
 
             @Override
