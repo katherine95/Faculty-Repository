@@ -17,22 +17,26 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.MenuOptionsViewHolder> {
+    CustomItemClickListener listener;
     private Context context;
     private List<Notes> notesList;
 
-    public BooksAdapter(Context context, List<Notes> notesList) {
+    public BooksAdapter(Context context, List<Notes> notesList, CustomItemClickListener listener) {
         this.context = context;
         this.notesList = notesList;
-
+        this.listener = listener;
     }
 
     @Override
     public MenuOptionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_main_books_lec, null);
-        return new MenuOptionsViewHolder(view);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_main_books_lec, parent, false);
+        final MenuOptionsViewHolder mViewHolder = new MenuOptionsViewHolder(itemView);
+        itemView.setOnClickListener(v -> listener.onItemClick(v, mViewHolder.getPosition()));
+        return mViewHolder;
     }
 
     @Override
@@ -43,11 +47,17 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.MenuOptionsV
         holder.bookYear.setText(menuItem.getBookYear());
         holder.bookSemester.setText(menuItem.getBookSemester());
         holder.pdfView.fromUri(Uri.parse(menuItem.bookUrl));
+
+        Timber.d("File Path " + String.valueOf(Uri.parse(menuItem.bookUrl)));
     }
 
     @Override
     public int getItemCount() {
         return notesList.size();
+    }
+
+    public Object getItem(int location) {
+        return notesList.get(location);
     }
 
     class MenuOptionsViewHolder extends RecyclerView.ViewHolder {

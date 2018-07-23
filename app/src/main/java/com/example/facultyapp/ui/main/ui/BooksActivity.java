@@ -1,14 +1,19 @@
 package com.example.facultyapp.ui.main.ui;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.facultyapp.R;
 import com.example.facultyapp.data.model.Notes;
 import com.example.facultyapp.ui.main.adapter.BooksAdapter;
+import com.example.facultyapp.ui.main.adapter.CustomItemClickListener;
 import com.example.facultyapp.ui.main.adapter.StudentAdapter;
 import com.example.facultyapp.util.Constants;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +34,8 @@ public class BooksActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
+    BooksAdapter booksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +61,21 @@ public class BooksActivity extends AppCompatActivity {
                     notesList.add(notes);
                 }
 
-                BooksAdapter booksAdapter = new BooksAdapter(getApplicationContext(), notesList);
+                booksAdapter = new BooksAdapter(getApplicationContext(), notesList, new CustomItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int position) {
+                        Notes notes = (Notes) booksAdapter.getItem(position);
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.parse(notes.bookUrl), "application/pdf");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent newIntent = Intent.createChooser(intent, "Open File");
+                        try {
+                            startActivity(newIntent);
+                        } catch (ActivityNotFoundException e) {
+                            // Instruct the user to install a PDF reader here, or something
+                        }
+                    }
+                });
                 recyclerView.setAdapter(booksAdapter);
             }
 

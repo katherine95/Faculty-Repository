@@ -18,20 +18,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MenuOptionsViewHolder> {
+    CustomItemClickListener listener;
     private Context context;
     private List<Notes> notesList;
 
-    public StudentAdapter(Context context, List<Notes> notesList) {
+    public StudentAdapter(Context context, List<Notes> notesList, CustomItemClickListener listener) {
         this.context = context;
         this.notesList = notesList;
+        this.listener = listener;
 
     }
 
     @Override
-    public MenuOptionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_main_books, null);
-        return new MenuOptionsViewHolder(view);
+    public StudentAdapter.MenuOptionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_main_books, parent, false);
+        final StudentAdapter.MenuOptionsViewHolder mViewHolder = new StudentAdapter.MenuOptionsViewHolder(itemView);
+        itemView.setOnClickListener(v -> listener.onItemClick(v, mViewHolder.getPosition()));
+        return mViewHolder;
     }
 
     @Override
@@ -47,6 +51,10 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MenuOpti
     @Override
     public int getItemCount() {
         return notesList.size();
+    }
+
+    public Object getItem(int location) {
+        return notesList.get(location);
     }
 
     class MenuOptionsViewHolder extends RecyclerView.ViewHolder {

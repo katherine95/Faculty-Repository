@@ -9,7 +9,6 @@ import android.content.Context;
 import com.example.facultyapp.data.dao.UserDao;
 import com.example.facultyapp.data.model.User;
 
-
 @Database(entities = {User.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {

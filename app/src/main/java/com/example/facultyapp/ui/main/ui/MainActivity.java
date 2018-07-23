@@ -1,10 +1,12 @@
 package com.example.facultyapp.ui.main.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -26,9 +29,9 @@ import com.example.facultyapp.data.model.Notes;
 import com.example.facultyapp.data.model.User;
 import com.example.facultyapp.databinding.ActivityMainBinding;
 import com.example.facultyapp.settings.Settings;
-import com.example.facultyapp.ui.auth.ui.AuthActivity;
 import com.example.facultyapp.ui.auth.ui.WelcomeActivity;
 import com.example.facultyapp.ui.chat.ChatActivity;
+import com.example.facultyapp.ui.main.adapter.CustomItemClickListener;
 import com.example.facultyapp.ui.main.adapter.StudentAdapter;
 import com.example.facultyapp.ui.main.viewmodel.MainViewModel;
 import com.example.facultyapp.util.Constants;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient mGoogleApiClient;
 
     private List<Notes> notesList;
+    StudentAdapter studentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +125,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     notesList.add(notes);
                 }
 
-                StudentAdapter studentAdapter = new StudentAdapter(getApplicationContext(), notesList);
+                studentAdapter = new StudentAdapter(getApplicationContext(), notesList, new CustomItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int position) {
+                        Notes notes = (Notes) studentAdapter.getItem(position);
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.parse(notes.bookUrl), "application/pdf");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent newIntent = Intent.createChooser(intent, "Open File");
+                        try {
+                            startActivity(newIntent);
+                        } catch (ActivityNotFoundException e) {
+                            // Instruct the user to install a PDF reader here, or something
+                        }
+                    }
+                });
                 recyclerView.setAdapter(studentAdapter);
             }
 
